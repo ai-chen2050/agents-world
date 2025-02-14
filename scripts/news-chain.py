@@ -25,20 +25,22 @@ def search_web(query):
     return summary
 
 if __name__ == "__main__":
-    question_input = "如何做西红柿炒鸡蛋?"
+    question_input = "今日全球军事和政治经济有什么重大新闻?"
     print('question_input: ' + question_input + "\n")
 
     template = """Question: {question}
 
-    Search Results: {search_results}
-
-    Answer: Let's think step by step.
-    please use {language} to answer the question.
+    网络资料: {search_results}
+    
+    Answer: 我希望你能充当一名微信公众号运营专员。我将为你提供一个文章的核心词汇，你的任务是根据关键词，生成与之相关的文章。
+    你还应该利用你毕生所学的知识和写作技巧的经验，编写出完善的公众号文章, 使文章更具有专业性。
+    同时你可以参考网络资料中的信息整理出一篇适合社交传播的网红文章，标题和内容都需要有创意。格式请用 Markdown, 标题请使用 H2 标题，内容请使用正文格式。
+    请用 {language} 回答
     """
 
     prompt = ChatPromptTemplate.from_template(template)
 
-    model = OllamaLLM(model="nezahatkorkmaz/deepseek-v3")
+    model = OllamaLLM(model="deepseek-r1")
 
     chain = prompt | model
 
