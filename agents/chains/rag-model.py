@@ -1,6 +1,6 @@
 from langchain_ollama import ChatOllama, OllamaEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import FAISS
+from langchain.vectorstores import FAISS # FAISS（Facebook AI Similarity Search, a lower-level library
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 
@@ -9,6 +9,18 @@ from langchain_core.runnables import RunnablePassthrough
 # Initialize the Ollama model and embeddings
 llm = ChatOllama(model="llama3.1")
 embeddings = OllamaEmbeddings(model="nomic-embed-text")
+
+# Or pull content from network
+# from langchain_community.document_loaders import WebBaseLoader
+# loader = WebBaseLoader("https://lilianweng.github.io/posts/2023-06-23-agent/")
+# data = loader.load()
+
+# Read data from PDF file
+# from langchain_community.document_loaders import PDFPlumberLoader
+# file = "DeepSeek_R1.pdf"
+# loader = PDFPlumberLoader(file)
+# docs = loader.load()
+
 
 # Prepare documents
 text = """
@@ -25,6 +37,10 @@ chunks = text_splitter.split_text(text)
 # Create vector store
 vectorstore = FAISS.from_texts(chunks, embeddings)
 retriever = vectorstore.as_retriever()
+
+# Or if you want to use ChromaDB, ChromaDB is a vector database, a higher-level library
+# from langchain_chroma import Chroma
+# vectorstore = Chroma.from_documents(documents=all_splits, embedding=embeddings)
 
 # Create prompt template
 template = """只能使用下列内容回答问题:
