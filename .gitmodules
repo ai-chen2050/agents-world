@@ -1,3 +1,6 @@
 [submodule "langchain"]
 	path = crates/langchain
 	url = https://github.com/langchain-ai/langchain.git
+[submodule "crates/dify-plus"]
+	path = crates/dify-plus
+	url = https://github.com/YFGaia/dify-plus.git
