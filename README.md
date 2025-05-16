@@ -39,6 +39,10 @@ This project demonstrates how to build AI agents using Langchain and Ollama.
     pip install langchain
     # or conda
     conda install langchain -c conda-forge
+    
+    pip install -U langchain-community
+    pip install -U langchain-ollama
+    pip install -qU langchain-openai
     ```
 
 ## Verification
